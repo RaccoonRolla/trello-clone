@@ -1,0 +1,93 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #f6e7de;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  background-color: #373b40;
+}
+
+.board {
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 120px;
+  height: max-content;
+  margin: 40px 30px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #2f3137;
+}
+
+.board__title {
+  width: 107%;
+  min-height: 50px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.card {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  margin: 5px;
+  cursor: grab;
+  background-color: #1e2021;
+
+  .card-title {
+    opacity: 0.7;
+  }
+}
+
+.addCardButton {
+  min-height: 30px;
+  width: 100%;
+  margin: 10px auto;
+  cursor: pointer;
+  .addCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0.5;
+  
+  
+  }
+  img {
+      filter: invert(92%) sepia(3%) saturate(1255%) hue-rotate(325deg) brightness(103%) contrast(93%);
+      height: 15px;
+      width: 15px;
+      margin-right: 10px;
+    }  
+}
+
+.formButtonGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 5px;
+
+  button {
+    min-width: 150px;
+    min-height: 30px;
+    background-color: #616161;
+    border: none;
+    cursor: pointer;
+  
+  }
+}
+
