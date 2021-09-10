@@ -1,23 +1,21 @@
 * {
+  height: 100%;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   color: #f6e7de;
 }
 
+
 .app {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: top;
-  justify-content: center;
+  justify-content: center;    
   background-color: #373b40;
 }
 
 .board {
-  min-width: 300px;
-  max-width: 300px;
-  min-height: 120px;
+  width: 300px;
   height: max-content;
   margin: 40px 30px;
   padding: 0 10px;
@@ -49,6 +47,25 @@
 
   .card-title {
     opacity: 0.7;
+  }
+
+  img {
+      filter: invert(92%) sepia(3%) saturate(1255%) hue-rotate(325deg) brightness(103%) contrast(93%);
+      height: 15px;
+      width: 15px;
+      margin-right: 10px;
+      position: relative;
+      float: right;
+      top: -20px;
+      right: -10px;
+      cursor: pointer;
+      visibility: hidden;
+  }
+
+  &:hover {
+    img {
+      visibility: visible;
+    }
   }
 }
 

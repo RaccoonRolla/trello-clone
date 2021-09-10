@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import { addCard } from '../actions/cardsActions';
+import { addNewCard } from '../actions/cardsActions';
 import { connect } from 'react-redux';
 
 //создан отдельный компонент с расчетом на использование в будущем для добавления новых досок
@@ -16,7 +16,7 @@ const KanbanActionButton = ({ boardId, ...props }) => {
     const { dispatch } = props;
 
     if (text) {
-      dispatch(addCard(boardId, text));
+      dispatch(addNewCard(boardId, text));
     }
     setText('');
     setFormOpen(!formOpen);

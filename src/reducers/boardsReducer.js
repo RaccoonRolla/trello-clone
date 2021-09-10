@@ -4,7 +4,7 @@ let cardId = 13;
 
 const initialState = [
   {
-    id: 1,
+    id: '0',
     title: 'On hold',
     items: [
       { id: 1, title: 'Покушац' },
@@ -13,7 +13,7 @@ const initialState = [
     ],
   },
   {
-    id: 2,
+    id: '1',
     title: 'In progress',
     items: [
       { id: 4, title: 'Почитать' },
@@ -22,7 +22,7 @@ const initialState = [
     ],
   },
   {
-    id: 3,
+    id: '2',
     title: 'Needs review',
     items: [
       { id: 7, title: 'Поработать' },
@@ -31,7 +31,7 @@ const initialState = [
     ],
   },
   {
-    id: 4,
+    id: '3',
     title: 'Approved',
     items: [
       { id: 10, title: 'Поработать' },
@@ -45,10 +45,9 @@ const boardsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTANTS.ADD_CARD: {
       const newCard = {
-        id: cardId,
-        title: action.payload.title,
+        id: action.payload.cardId,
+        title: action.payload.cardTitle,
       };
-      cardId += 1;
       const newState = state.map((board) => {
         if (board.id === action.payload.boardId) {
           return {
@@ -75,14 +74,42 @@ const boardsReducer = (state = initialState, action) => {
 
       // в той же доске
       if (droppableIdStart === droppableIdEnd) {
-        debugger;
         const board = state.find((board) => droppableIdStart === board.id);
         const card = board.items.splice(droppableIndexStart, 1);
-        console.log(board);
         board.items.splice(droppableIndexEnd, 0, ...card);
       }
 
+      //в другой доске
+      if (droppableIdStart !== droppableIdEnd) {
+        const boardStart = state.find((board) => droppableIdStart === board.id);
+        const boardEnd = state.find((board) => droppableIdEnd === board.id);
+        const card = boardStart.items.splice(droppableIndexStart, 1);
+        boardEnd.items.splice(droppableIndexEnd, 0, ...card);
+      }
+
       return newState;
+
+    case CONSTANTS.DELETE_CARD: {
+      const newState = state.map((board) => {
+        if (board.id === action.payload.boardId) {
+          return {
+            ...board,
+            items: board.items.filter((item) => item.id !== action.payload.cardId),
+          };
+        } else {
+          return board;
+        }
+      });
+      return newState;
+    }
+
+    case CONSTANTS.SET_BOARDS:
+      return state.map((board) => {
+        board.items = action.payload
+          .filter((item) => item.row === board.id)
+          .map((item) => ({ id: item.id, title: item.text }));
+        return board;
+      });
 
     default:
       return state;

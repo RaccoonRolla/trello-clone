@@ -11,20 +11,20 @@ const Board = ({ title, items, boardId }) => {
           <div
             className="board__title"
             style={
-              boardId === 1
+              boardId === '0'
                 ? { backgroundColor: '#ed854a' }
-                : boardId === 2
+                : boardId === '1'
                 ? { backgroundColor: '#4191ba' }
-                : boardId === 3
+                : boardId === '2'
                 ? { backgroundColor: '#f0cc56' }
-                : boardId === 4
+                : boardId === '3'
                 ? { backgroundColor: '#52b269' }
                 : { backgroundColor: '#2f3137' }
             }>
             <div>{title + ' (' + items.length + ')'}</div>
           </div>
           {items.map((c, index) => (
-            <Card key={c.id} cardId={c.id} title={c.title} cardIndex={index} />
+            <Card key={c.id} cardId={c.id} title={c.title} cardIndex={index} boardId={boardId} />
           ))}
           {provided.placeholder}
           <KanbanActionButton boardId={boardId} />
