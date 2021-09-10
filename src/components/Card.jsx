@@ -1,12 +1,11 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
-import { deleteCard } from '../actions/cardsActions';
+import { deleteCardFromBack } from '../actions/cardsActions';
 
-const Card = ({ cardId, title, cardIndex, boardId, ...props }) => {
+const Card = ({ cardId, title, cardIndex, boardId, deleteCardFromBack, ...props }) => {
   const handleDeleteCard = () => {
-    const { dispatch } = props;
-    dispatch(deleteCard(cardId, boardId));
+    deleteCardFromBack(cardId, boardId);
   };
   return (
     <Draggable draggableId={String(cardId)} index={cardIndex}>
@@ -33,4 +32,8 @@ const Card = ({ cardId, title, cardIndex, boardId, ...props }) => {
   );
 };
 
-export default connect()(Card);
+const mapStateToProps = (state) => ({
+  boards: state.boards.items,
+});
+
+export default connect(mapStateToProps, { deleteCardFromBack })(Card);

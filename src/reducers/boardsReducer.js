@@ -7,36 +7,36 @@ const initialState = [
     id: '0',
     title: 'On hold',
     items: [
-      { id: 1, title: 'Покушац' },
-      { id: 2, title: 'Попыт' },
-      { id: 3, title: 'Сделать канбан' },
+      // { id: 1, title: 'Покушац' },
+      // { id: 2, title: 'Попыт' },
+      // { id: 3, title: 'Сделать канбан' },
     ],
   },
   {
     id: '1',
     title: 'In progress',
     items: [
-      { id: 4, title: 'Почитать' },
-      { id: 5, title: 'Подумать' },
-      { id: 6, title: 'Погулять' },
+      // { id: 4, title: 'Почитать' },
+      // { id: 5, title: 'Подумать' },
+      // { id: 6, title: 'Погулять' },
     ],
   },
   {
     id: '2',
     title: 'Needs review',
     items: [
-      { id: 7, title: 'Поработать' },
-      { id: 8, title: 'Выкинуть мусор' },
-      { id: 9, title: 'Прочитать ТЗ' },
+      // { id: 7, title: 'Поработать' },
+      // { id: 8, title: 'Выкинуть мусор' },
+      // { id: 9, title: 'Прочитать ТЗ' },
     ],
   },
   {
     id: '3',
     title: 'Approved',
     items: [
-      { id: 10, title: 'Поработать' },
-      { id: 11, title: 'Выкинуть мусор' },
-      { id: 12, title: 'Прочитать ТЗ' },
+      // { id: 10, title: 'Поработать' },
+      // { id: 11, title: 'Выкинуть мусор' },
+      // { id: 12, title: 'Прочитать ТЗ' },
     ],
   },
 ];
@@ -71,6 +71,7 @@ const boardsReducer = (state = initialState, action) => {
         draggableId,
       } = action.payload;
       const newState = [...state];
+      debugger;
 
       // в той же доске
       if (droppableIdStart === droppableIdEnd) {
@@ -90,6 +91,7 @@ const boardsReducer = (state = initialState, action) => {
       return newState;
 
     case CONSTANTS.DELETE_CARD: {
+      debugger;
       const newState = state.map((board) => {
         if (board.id === action.payload.boardId) {
           return {

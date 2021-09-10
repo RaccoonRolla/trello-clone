@@ -3,8 +3,7 @@ import * as axios from 'axios';
 const kanbanTestInstance = axios.create({
   baseURL: 'https://trello.backend.tests.nekidaem.ru/api/v1/',
   headers: {
-    Authorization:
-      'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MjYsInVzZXJuYW1lIjoiUmFjY29vblJvbGxhIiwiZXhwIjoxNjMxMjU5MjM3LCJlbWFpbCI6Imdhc3BhcmRoZW5yeUBnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTYzMTI1NTYzN30.XXynqsj2i29jtJgATh6acnUlQ0OSUP05TA9cersdx08',
+    Authorization: `JWT ${localStorage.token}`,
   },
 });
 
@@ -17,5 +16,17 @@ export const cardsAPI = {
   },
   deleteCard(cardId) {
     return kanbanTestInstance.delete(`cards/${cardId}`);
+  },
+  updateCard(cardId, boardId) {
+    return kanbanTestInstance.patch(`cards/${cardId}/`, { row: boardId });
+  },
+};
+
+export const authAPI = {
+  getToken() {
+    return axios.post('https://trello.backend.tests.nekidaem.ru/api/v1/users/login/', {
+      username: 'RaccoonRolla',
+      password: 'yND,_K)96X',
+    });
   },
 };

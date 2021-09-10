@@ -28,15 +28,14 @@ export const sort = (
 };
 
 export const setBoards = (boards) => {
-  debugger;
   return {
     type: CONSTANTS.SET_BOARDS,
     payload: boards,
   };
 };
 
-export const deleteCard = (cardId) => {
-  return { type: CONSTANTS.DELETE_CARD, payload: { cardId } };
+export const deleteCard = (cardId, boardId) => {
+  return { type: CONSTANTS.DELETE_CARD, payload: { cardId, boardId } };
 };
 
 export const getCards = () => {
@@ -52,3 +51,20 @@ export const addNewCard = (boardId, cardTitle) => (dispatch) => {
     dispatch(addCard(response.data.row, response.data.text, response.data.id));
   });
 };
+
+export const deleteCardFromBack = (cardId, boardId) => (dispatch) => {
+  cardsAPI.deleteCard(cardId).then(() => {
+    dispatch(deleteCard(cardId, boardId));
+  });
+};
+
+export const moveCard =
+  (droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId) =>
+  (dispatch) => {
+    debugger;
+    cardsAPI.updateCard(draggableId, droppableIdEnd).then(() => {
+      dispatch(
+        sort(droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId),
+      );
+    });
+  };
